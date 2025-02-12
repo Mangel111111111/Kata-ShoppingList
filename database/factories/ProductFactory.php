@@ -17,7 +17,7 @@ class ProductFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'ProductName' => $this->faker->realText($maxNbChars = 10),
         ];
     }
 }
