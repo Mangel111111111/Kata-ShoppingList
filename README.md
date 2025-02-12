@@ -1,66 +1,165 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# 🆔 ShoppingList
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+In this project we are trying to create a shopping list. In it we should be able to create articles, modify them, view them and delete them. 
 
-## About Laravel
+---
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## 🛠️🚀 Tech Stack
+### **Languages**:
+- HTML
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+### **Frameworks**:
+- Laravel
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### **Server**:
+- XAMPP
+- Apache
+- Node.js
 
-## Learning Laravel
+### **Database**:
+- MySQL
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### **Tools & Others**:
+- Composer
+- Postman
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+## 🔧⚙️ Installation
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+Follow these steps to install and set up the project:
 
-## Laravel Sponsors
+- Clone the repository
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+```
+https://github.com/Mangel111111111/Kata-ShoppingList.git
+```
+- Install Composer dependencies
 
-### Premium Partners
+```
+composer install
+```
+- Install Node.js dependencies
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+```
+npm install
+```
+- Duplicate .env.example file and rename to .env
+- In this new .env, change the variables you need, but it is very important to uncomment the database connection lines that are these:
+ 
+In DB_CONNECTION will come mysqlite, change it to the bd you use (in this case MySQL)
 
-## Contributing
+```
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=ShoppingList
+DB_USERNAME=root
+DB_PASSWORD=
+```
+ - Generate an App Key with this command 
+```
+php artisan key:generate 
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+- Execute migrations  
+```
+php artisan migrate
+```
 
-## Code of Conduct
+## ▶️💻 Run Locally
+- How to run the Laravel server  
+```
+php artisan serve
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+- If you want to run all this in development environment run the following command  
+```
+npm run dev
+```
 
-## Security Vulnerabilities
+- For production you should run the following command 
+```
+npm run build
+```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+## 🏃‍♂️🧪 Running Tests
 
-## License
+To run test you should uncomment the following lines on the phpunit.xml file.
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+```bash
+<env name="DB_CONNECTION" value="sqlite"/>
+<env name="DB_DATABASE" value=":memory:"/>
+```
+
+With the following command we run the tests and we will also generate a coverage report
+
+```bash
+  php artisan test --coverage-html=coverage-report
+```
+
+## 📡🌐 ShoppingList API
+
+#### Get all products entries
+
+```http
+GET /api/products
+```
+
+#### Response:
+- **Status Code:** 200
+- **Content Type:** application/json
+
+#### Create a new product
+
+```http
+POST /api/products
+```
+
+#### Response:
+- **Status Code:** 201
+- **Content Type:** application/json
+
+#### Body: 
+
+| Parameter | Type     | Description                    |
+| :-------- | :------- | :-------------------------     |
+| `ProductName`    | `string` | **Required**. Name of product    |
+
+#### Update an existing product by ID
+
+```http
+PUT /api/products/id
+```
+
+| Parameter | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+| `id`      | `integer` | **Required**. product ID     |
+
+#### Response:
+- **Status Code:** 200, 404
+- **Content Type:** application/json
+
+#### Body: 
+
+| Parameter | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+| `ProductName`    | `string` | Name of product    |
+
+#### 5 Delete a product by ID
+
+```http
+DELETE /api/products/id
+```
+
+| Parameter | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+| `id`      | `integer` | **Required**. product ID     |
+
+#### Response:
+- **Status Code:** 204, 404
+- **Content Type:** No-Content, application/json
+
+
+## ✍️🙍 Author
+**Miguel Angel García:**  [![GitHub](https://img.shields.io/badge/GitHub-Perfil-black?style=flat-square&logo=github)](https://github.com/Mangel111111111)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Perfil-blue?style=flat-square&logo=linkedin)](www.linkedin.com/in/miguel-garcía-lópez-609136284)
+[![Correo](https://img.shields.io/badge/Email-Contacto-red?style=flat-square&logo=gmail)](mailto:miguelg.lopez@outlook.com)
