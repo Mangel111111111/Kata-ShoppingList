@@ -79,4 +79,15 @@ class ProductController extends Controller
 
         return response()->json($product, 200);
     }
+
+    public function destroyAll()
+    {
+        $product = Product::all();
+
+        foreach($product as $item) {
+            $item->delete();
+        }
+
+        return response()->json($product, 200);
+    }
 }
